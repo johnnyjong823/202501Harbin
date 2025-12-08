@@ -321,10 +321,20 @@
         }
         
         .shopping-item-price {
+            text-align: right;
+            margin-right: 15px;
+        }
+        
+        .shopping-item-price-cny {
             font-size: 1.1em;
             color: var(--warm-orange);
             font-weight: bold;
-            margin-right: 15px;
+        }
+        
+        .shopping-item-price-twd {
+            font-size: 0.85em;
+            color: var(--ice-blue);
+            opacity: 0.8;
         }
         
         .delete-btn {
@@ -483,7 +493,8 @@
         <div class="tab-content" id="tab-shopping">
             <div class="stats-card">
                 <h4>💰 總花費</h4>
-                <div class="stats-amount" id="total-amount">NT$ 0</div>
+                <div class="stats-amount" id="total-amount-cny">¥ 0</div>
+                <div class="stats-amount" id="total-amount-twd" style="font-size: 1.5em; opacity: 0.85; margin-top: 5px;">≈ NT$ 0</div>
                 <div class="stats-count" id="items-count">共 0 項</div>
             </div>
             
@@ -493,7 +504,7 @@
                     <input type="text" class="shopping-input" id="item-name" placeholder="品項名稱（如：哈爾濱紅腸）">
                 </div>
                 <div class="shopping-input-group">
-                    <input type="number" class="shopping-input" id="item-price" placeholder="金額（新台幣）">
+                    <input type="number" class="shopping-input" id="item-price" placeholder="金額（人民幣 ¥）">
                     <button class="add-btn" onclick="addShoppingItem()">
                         <i class="fas fa-plus"></i> 新增
                     </button>
@@ -714,6 +725,7 @@
         function renderShoppingList() {
             const container = document.getElementById('shopping-list');
             const list = getShoppingList();
+            const exchangeRate = 4.5;
             
             if (list.length === 0) {
                 container.innerHTML = `
@@ -723,24 +735,31 @@
                     </div>
                 `;
             } else {
-                container.innerHTML = list.map(item => `
+                container.innerHTML = list.map(item => {
+                    const twdPrice = Math.round(item.price * exchangeRate);
+                    return `
                     <div class="shopping-item">
                         <div class="shopping-item-info">
                             <div class="shopping-item-name">${item.name}</div>
                             <div class="shopping-item-date">${item.date}</div>
                         </div>
-                        <div class="shopping-item-price">NT$ ${item.price.toLocaleString()}</div>
+                        <div class="shopping-item-price">
+                            <div class="shopping-item-price-cny">¥ ${item.price.toLocaleString()}</div>
+                            <div class="shopping-item-price-twd">≈ NT$ ${twdPrice.toLocaleString()}</div>
+                        </div>
                         <button class="delete-btn" onclick="deleteShoppingItem(${item.id})">
                             <i class="fas fa-trash"></i>
                         </button>
                     </div>
-                `).join('');
+                `}).join('');
             }
             
             // 更新統計
-            const total = list.reduce((sum, item) => sum + item.price, 0);
-            document.getElementById('total-amount').textContent = `NT$ ${total.toLocaleString()}`;
-            document.getElementById('items-count').textContent = `共 ${list.length} 項`;
+            const totalCNY = list.reduce((sum, item) => sum + item.price, 0);
+            const totalTWD = Math.round(totalCNY * exchangeRate);
+            document.getElementById('total-amount-cny').textContent = `¥ ${totalCNY.toLocaleString()}`;
+            document.getElementById('total-amount-twd').textContent = `≈ NT$ ${totalTWD.toLocaleString()}`;
+            document.getElementById('items-count').textContent = `共 ${list.length} 項（匯率 1:${exchangeRate}）`;
         }
         
         function clearShopping() {
