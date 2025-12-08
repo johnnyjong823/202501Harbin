@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>清單 - 東北冰雪奇緣</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --ice-blue: #87CEEB;
+            --snow-white: #FFFAFA;
+            --warm-orange: #FF8C42;
+            --deep-navy: #1A1A2E;
+            --frost-blue: #E8F4F8;
+            --glass-bg: rgba(255,255,255,0.1);
+            --glass-border: rgba(255,255,255,0.2);
+            --success-green: #4CAF50;
+            --danger-red: #f44336;
+        }
+        
+        html { scroll-behavior: smooth; }
+        
+        body {
+            font-family: 'Microsoft JhengHei', 'Noto Sans TC', sans-serif;
+            background: linear-gradient(135deg, var(--deep-navy) 0%, #16213E 50%, #0F3460 100%);
+            min-height: 100vh;
+            color: var(--snow-white);
+            padding-bottom: 70px;
+        }
+        
+        /* 飄雪動畫 */
+        .snowflakes { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1000; overflow: hidden; }
+        .snowflake { position: absolute; color: #fff; opacity: 0.8; animation: fall linear infinite; }
+        @keyframes fall {
+            0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(110vh) rotate(360deg); opacity: 0.3; }
+        }
+        
+        /* 底部導航 - 手機友善 */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(20px);
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 5px;
+            z-index: 999;
+            border-top: 1px solid var(--glass-border);
+        }
+        
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 8px 12px;
+            color: var(--snow-white);
+            text-decoration: none;
+            opacity: 0.6;
+            transition: all 0.3s;
+            border-radius: 10px;
+            font-size: 0.75em;
+        }
+        
+        .nav-item.active, .nav-item:hover {
+            opacity: 1;
+            background: var(--glass-bg);
+        }
+        
+        .nav-item i {
+            font-size: 1.5em;
+            margin-bottom: 4px;
+        }
+        
+        .nav-item.active i { color: var(--warm-orange); }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* 內容區塊 */
+        .section {
+            padding: 40px 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 1.8em;
+            margin-bottom: 30px;
+            color: var(--ice-blue);
+        }
+        
+        .section-title i { margin-right: 10px; }
+        
+        /* Tabs */
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+        
+        .tab-btn {
+            flex: 1;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 15px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: var(--snow-white);
+            font-size: 1em;
+            font-weight: bold;
+        }
+        
+        .tab-btn:hover, .tab-btn.active {
+            background: var(--warm-orange);
+            transform: scale(1.02);
+        }
+        
+        .tab-btn i { margin-right: 8px; }
+        
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+        
+        .tab-content.active { display: block; }
+        
+        /* 清單卡片 */
+        .checklist-card {
+            background: var(--glass-bg);
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 20px;
+            border: 1px solid var(--glass-border);
+        }
+        
+        .checklist-card h3 {
+            color: var(--ice-blue);
+            margin-bottom: 20px;
+            font-size: 1.2em;
+            display: flex;
+            align-items: center;
+        }
+        
+        .checklist-card h3 i { margin-right: 10px; }
+        
+        /* 進度條 */
+        .progress-bar {
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            height: 8px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--warm-orange), #FFD700);
+            border-radius: 10px;
+            transition: width 0.3s ease;
+        }
+        
+        .progress-text {
+            text-align: center;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+            color: var(--ice-blue);
+        }
+        
+        /* 勾選項目 */
+        .check-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            margin-bottom: 8px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 1px solid transparent;
+        }
+        
+        .check-item:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: var(--glass-border);
+        }
+        
+        .check-item.checked {
+            background: rgba(76, 175, 80, 0.2);
+            border-color: var(--success-green);
+        }
+        
+        .check-item.checked .item-text {
+            text-decoration: line-through;
+            opacity: 0.6;
+        }
+        
+        .checkbox {
+            width: 24px;
+            height: 24px;
+            border: 2px solid var(--glass-border);
+            border-radius: 6px;
+            margin-right: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: all 0.3s;
+        }
+        
+        .check-item.checked .checkbox {
+            background: var(--success-green);
+            border-color: var(--success-green);
+        }
+        
+        .checkbox i {
+            color: white;
+            font-size: 14px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .check-item.checked .checkbox i {
+            opacity: 1;
+        }
+        
+        .item-text {
+            flex: 1;
+            font-size: 1em;
+        }
+        
+        .item-category {
+            font-size: 0.8em;
+            color: var(--warm-orange);
+            background: rgba(255,140,66,0.2);
+            padding: 3px 10px;
+            border-radius: 10px;
+        }
+        
+        /* 購買清單 */
+        .shopping-input-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .shopping-input {
+            flex: 1;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 12px 18px;
+            color: var(--snow-white);
+            font-size: 1em;
+            outline: none;
+            transition: all 0.3s;
+        }
+        
+        .shopping-input::placeholder {
+            color: rgba(255,255,255,0.5);
+        }
+        
+        .shopping-input:focus {
+            border-color: var(--warm-orange);
+            background: rgba(255,255,255,0.15);
+        }
+        
+        .add-btn {
+            background: var(--warm-orange);
+            border: none;
+            border-radius: 12px;
+            padding: 12px 20px;
+            color: white;
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .add-btn:hover {
+            background: #FF6B35;
+            transform: scale(1.05);
+        }
+        
+        /* 購物項目 */
+        .shopping-item {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            margin-bottom: 10px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 12px;
+            border: 1px solid var(--glass-border);
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .shopping-item-info {
+            flex: 1;
+        }
+        
+        .shopping-item-name {
+            font-size: 1.05em;
+            margin-bottom: 3px;
+        }
+        
+        .shopping-item-date {
+            font-size: 0.8em;
+            opacity: 0.6;
+        }
+        
+        .shopping-item-price {
+            font-size: 1.1em;
+            color: var(--warm-orange);
+            font-weight: bold;
+            margin-right: 15px;
+        }
+        
+        .delete-btn {
+            background: rgba(244, 67, 54, 0.2);
+            border: none;
+            border-radius: 8px;
+            padding: 8px 12px;
+            color: var(--danger-red);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .delete-btn:hover {
+            background: var(--danger-red);
+            color: white;
+        }
+        
+        /* 統計區塊 */
+        .stats-card {
+            background: linear-gradient(135deg, var(--warm-orange) 0%, #FF6B35 100%);
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .stats-card h4 {
+            font-size: 1em;
+            margin-bottom: 10px;
+            opacity: 0.9;
+        }
+        
+        .stats-amount {
+            font-size: 2.5em;
+            font-weight: bold;
+        }
+        
+        .stats-count {
+            font-size: 0.9em;
+            opacity: 0.8;
+            margin-top: 5px;
+        }
+        
+        /* 空狀態 */
+        .empty-state {
+            text-align: center;
+            padding: 50px 20px;
+            opacity: 0.6;
+        }
+        
+        .empty-state i {
+            font-size: 4em;
+            margin-bottom: 20px;
+            color: var(--ice-blue);
+        }
+        
+        .empty-state p {
+            font-size: 1.1em;
+        }
+        
+        /* 重置按鈕 */
+        .reset-btn {
+            background: rgba(244, 67, 54, 0.2);
+            border: 1px solid var(--danger-red);
+            border-radius: 12px;
+            padding: 10px 20px;
+            color: var(--danger-red);
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.9em;
+            margin-top: 20px;
+        }
+        
+        .reset-btn:hover {
+            background: var(--danger-red);
+            color: white;
+        }
+        
+        /* 響應式設計 */
+        @media (max-width: 768px) {
+            .section { padding: 25px 15px; }
+            .section-title { font-size: 1.4em; }
+            
+            .tabs { flex-direction: column; }
+            .tab-btn { padding: 12px 15px; }
+            
+            .checklist-card { padding: 20px 15px; }
+            
+            .shopping-input-group { flex-direction: column; }
+            .add-btn { justify-content: center; }
+            
+            .stats-amount { font-size: 2em; }
+        }
+        
+        @media (max-width: 480px) {
+            .nav-item { padding: 6px 8px; font-size: 0.7em; }
+            .nav-item i { font-size: 1.3em; }
+            
+            .check-item { padding: 10px 12px; }
+            .item-category { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <!-- 飄雪效果 -->
+    <div class="snowflakes" id="snowflakes"></div>
+    
+    <section class="section" style="padding-top: 30px;">
+        <h2 class="section-title"><i class="fas fa-list-check"></i>旅行清單</h2>
+        
+        <!-- Tabs -->
+        <div class="tabs">
+            <div class="tab-btn active" data-tab="preparation">
+                <i class="fas fa-suitcase"></i>行前準備
+            </div>
+            <div class="tab-btn" data-tab="shopping">
+                <i class="fas fa-shopping-bag"></i>購買清單
+            </div>
+        </div>
+        
+        <!-- 行前準備 Tab -->
+        <div class="tab-content active" id="tab-preparation">
+            <div class="progress-text" id="prep-progress-text">已完成 0 / 0 項</div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="prep-progress-fill" style="width: 0%"></div>
+            </div>
+            
+            <div class="checklist-card">
+                <h3><i class="fas fa-passport"></i>證件文件</h3>
+                <div id="documents-list"></div>
+            </div>
+            
+            <div class="checklist-card">
+                <h3><i class="fas fa-tshirt"></i>衣物裝備</h3>
+                <div id="clothing-list"></div>
+            </div>
+            
+            <div class="checklist-card">
+                <h3><i class="fas fa-briefcase-medical"></i>日用品藥品</h3>
+                <div id="essentials-list"></div>
+            </div>
+            
+            <div class="checklist-card">
+                <h3><i class="fas fa-mobile-alt"></i>電子產品</h3>
+                <div id="electronics-list"></div>
+            </div>
+            
+            <div style="text-align: center;">
+                <button class="reset-btn" onclick="resetPreparation()">
+                    <i class="fas fa-redo"></i> 重置所有項目
+                </button>
+            </div>
+        </div>
+        
+        <!-- 購買清單 Tab -->
+        <div class="tab-content" id="tab-shopping">
+            <div class="stats-card">
+                <h4>💰 總花費</h4>
+                <div class="stats-amount" id="total-amount">NT$ 0</div>
+                <div class="stats-count" id="items-count">共 0 項</div>
+            </div>
+            
+            <div class="checklist-card">
+                <h3><i class="fas fa-plus-circle"></i>新增購買項目</h3>
+                <div class="shopping-input-group">
+                    <input type="text" class="shopping-input" id="item-name" placeholder="品項名稱（如：哈爾濱紅腸）">
+                </div>
+                <div class="shopping-input-group">
+                    <input type="number" class="shopping-input" id="item-price" placeholder="金額（新台幣）">
+                    <button class="add-btn" onclick="addShoppingItem()">
+                        <i class="fas fa-plus"></i> 新增
+                    </button>
+                </div>
+            </div>
+            
+            <div class="checklist-card">
+                <h3><i class="fas fa-receipt"></i>購買記錄</h3>
+                <div id="shopping-list"></div>
+            </div>
+            
+            <div style="text-align: center;">
+                <button class="reset-btn" onclick="clearShopping()">
+                    <i class="fas fa-trash"></i> 清空購買清單
+                </button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 底部導航 -->
+    <nav class="bottom-nav">
+        <a href="index.html" class="nav-item">
+            <i class="fas fa-home"></i>
+            <span>首頁</span>
+        </a>
+        <a href="itinerary.html" class="nav-item">
+            <i class="fas fa-map-marked-alt"></i>
+            <span>行程</span>
+        </a>
+        <a href="checklist.html" class="nav-item active">
+            <i class="fas fa-list-check"></i>
+            <span>清單</span>
+        </a>
+    </nav>
+    
+    <script>
+        // ========== 行前準備資料 ==========
+        const preparationItems = {
+            documents: [
+                { id: 'doc1', text: '護照（效期6個月以上）' },
+                { id: 'doc2', text: '台胞證' },
+                { id: 'doc3', text: '身分證影本' },
+                { id: 'doc4', text: '機票電子票證' },
+                { id: 'doc5', text: '酒店訂房確認單' },
+                { id: 'doc6', text: '旅遊保險證明' },
+                { id: 'doc7', text: '緊急聯絡人資料' },
+                { id: 'doc8', text: '信用卡（建議2張以上）' }
+            ],
+            clothing: [
+                { id: 'cloth1', text: '羽絨外套（-30°C適用）' },
+                { id: 'cloth2', text: '保暖內衣褲（發熱衣）' },
+                { id: 'cloth3', text: '厚毛衣/刷毛上衣 x3' },
+                { id: 'cloth4', text: '保暖褲/雪褲' },
+                { id: 'cloth5', text: '防水雪靴' },
+                { id: 'cloth6', text: '厚襪子 x5' },
+                { id: 'cloth7', text: '毛帽/雷鋒帽' },
+                { id: 'cloth8', text: '圍巾/脖圍' },
+                { id: 'cloth9', text: '防水手套（建議兩層）' },
+                { id: 'cloth10', text: '暖暖包 x20' },
+                { id: 'cloth11', text: '口罩（保暖+防風）' },
+                { id: 'cloth12', text: '太陽眼鏡/雪鏡' }
+            ],
+            essentials: [
+                { id: 'ess1', text: '保濕乳液/護手霜' },
+                { id: 'ess2', text: '護唇膏' },
+                { id: 'ess3', text: '防曬乳（雪地反光）' },
+                { id: 'ess4', text: '個人藥品' },
+                { id: 'ess5', text: '腸胃藥' },
+                { id: 'ess6', text: '感冒藥' },
+                { id: 'ess7', text: '暈車藥' },
+                { id: 'ess8', text: '盥洗用品' },
+                { id: 'ess9', text: '保溫杯' },
+                { id: 'ess10', text: '零食/泡麵' }
+            ],
+            electronics: [
+                { id: 'elec1', text: '手機+充電器' },
+                { id: 'elec2', text: '行動電源（低溫需貼身保暖）' },
+                { id: 'elec3', text: '相機+備用電池' },
+                { id: 'elec4', text: '記憶卡/傳輸線' },
+                { id: 'elec5', text: '萬用插頭轉接器' },
+                { id: 'elec6', text: '耳機' }
+            ]
+        };
+        
+        // ========== Tab 切換 ==========
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                // 更新 tab 按鈕狀態
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                // 切換內容
+                const tabId = btn.dataset.tab;
+                document.querySelectorAll('.tab-content').forEach(content => {
+                    content.classList.toggle('active', content.id === `tab-${tabId}`);
+                });
+            });
+        });
+        
+        // ========== 行前準備功能 ==========
+        function getCheckedItems() {
+            const saved = sessionStorage.getItem('preparationChecked');
+            return saved ? JSON.parse(saved) : {};
+        }
+        
+        function saveCheckedItems(checked) {
+            sessionStorage.setItem('preparationChecked', JSON.stringify(checked));
+        }
+        
+        function renderPreparationList(containerId, items, category) {
+            const container = document.getElementById(containerId);
+            const checked = getCheckedItems();
+            
+            container.innerHTML = items.map(item => `
+                <div class="check-item ${checked[item.id] ? 'checked' : ''}" data-id="${item.id}" onclick="toggleItem('${item.id}')">
+                    <div class="checkbox">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <span class="item-text">${item.text}</span>
+                    <span class="item-category">${category}</span>
+                </div>
+            `).join('');
+        }
+        
+        function toggleItem(id) {
+            const checked = getCheckedItems();
+            checked[id] = !checked[id];
+            saveCheckedItems(checked);
+            
+            // 更新 UI
+            const item = document.querySelector(`[data-id="${id}"]`);
+            item.classList.toggle('checked');
+            
+            updateProgress();
+        }
+        
+        function updateProgress() {
+            const checked = getCheckedItems();
+            const allItems = [
+                ...preparationItems.documents,
+                ...preparationItems.clothing,
+                ...preparationItems.essentials,
+                ...preparationItems.electronics
+            ];
+            
+            const total = allItems.length;
+            const completed = allItems.filter(item => checked[item.id]).length;
+            const percentage = total > 0 ? (completed / total) * 100 : 0;
+            
+            document.getElementById('prep-progress-text').textContent = `已完成 ${completed} / ${total} 項`;
+            document.getElementById('prep-progress-fill').style.width = `${percentage}%`;
+        }
+        
+        function resetPreparation() {
+            if (confirm('確定要重置所有行前準備項目嗎？')) {
+                sessionStorage.removeItem('preparationChecked');
+                initPreparation();
+            }
+        }
+        
+        function initPreparation() {
+            renderPreparationList('documents-list', preparationItems.documents, '證件');
+            renderPreparationList('clothing-list', preparationItems.clothing, '衣物');
+            renderPreparationList('essentials-list', preparationItems.essentials, '日用');
+            renderPreparationList('electronics-list', preparationItems.electronics, '電子');
+            updateProgress();
+        }
+        
+        // ========== 購買清單功能 ==========
+        function getShoppingList() {
+            const saved = localStorage.getItem('shoppingList');
+            return saved ? JSON.parse(saved) : [];
+        }
+        
+        function saveShoppingList(list) {
+            localStorage.setItem('shoppingList', JSON.stringify(list));
+        }
+        
+        function addShoppingItem() {
+            const nameInput = document.getElementById('item-name');
+            const priceInput = document.getElementById('item-price');
+            
+            const name = nameInput.value.trim();
+            const price = parseFloat(priceInput.value) || 0;
+            
+            if (!name) {
+                alert('請輸入品項名稱');
+                nameInput.focus();
+                return;
+            }
+            
+            const list = getShoppingList();
+            const newItem = {
+                id: Date.now(),
+                name: name,
+                price: price,
+                date: new Date().toLocaleDateString('zh-TW')
+            };
+            
+            list.unshift(newItem);
+            saveShoppingList(list);
+            
+            // 清空輸入
+            nameInput.value = '';
+            priceInput.value = '';
+            nameInput.focus();
+            
+            renderShoppingList();
+        }
+        
+        function deleteShoppingItem(id) {
+            const list = getShoppingList();
+            const newList = list.filter(item => item.id !== id);
+            saveShoppingList(newList);
+            renderShoppingList();
+        }
+        
+        function renderShoppingList() {
+            const container = document.getElementById('shopping-list');
+            const list = getShoppingList();
+            
+            if (list.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-shopping-cart"></i>
+                        <p>還沒有購買記錄<br>開始記錄你的戰利品吧！</p>
+                    </div>
+                `;
+            } else {
+                container.innerHTML = list.map(item => `
+                    <div class="shopping-item">
+                        <div class="shopping-item-info">
+                            <div class="shopping-item-name">${item.name}</div>
+                            <div class="shopping-item-date">${item.date}</div>
+                        </div>
+                        <div class="shopping-item-price">NT$ ${item.price.toLocaleString()}</div>
+                        <button class="delete-btn" onclick="deleteShoppingItem(${item.id})">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                `).join('');
+            }
+            
+            // 更新統計
+            const total = list.reduce((sum, item) => sum + item.price, 0);
+            document.getElementById('total-amount').textContent = `NT$ ${total.toLocaleString()}`;
+            document.getElementById('items-count').textContent = `共 ${list.length} 項`;
+        }
+        
+        function clearShopping() {
+            if (confirm('確定要清空所有購買記錄嗎？')) {
+                localStorage.removeItem('shoppingList');
+                renderShoppingList();
+            }
+        }
+        
+        // Enter 鍵新增
+        document.getElementById('item-name').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                document.getElementById('item-price').focus();
+            }
+        });
+        
+        document.getElementById('item-price').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                addShoppingItem();
+            }
+        });
+        
+        // ========== 飄雪效果 ==========
+        function createSnowflakes() {
+            const container = document.getElementById('snowflakes');
+            const snowflakeChars = ['❄', '❅', '❆', '✻', '✼'];
+            
+            for (let i = 0; i < 40; i++) {
+                const snowflake = document.createElement('div');
+                snowflake.className = 'snowflake';
+                snowflake.innerHTML = snowflakeChars[Math.floor(Math.random() * snowflakeChars.length)];
+                snowflake.style.left = Math.random() * 100 + 'vw';
+                snowflake.style.fontSize = (Math.random() * 12 + 8) + 'px';
+                snowflake.style.animationDuration = (Math.random() * 5 + 5) + 's';
+                snowflake.style.animationDelay = (Math.random() * 10) + 's';
+                container.appendChild(snowflake);
+            }
+        }
+        
+        // ========== 初始化 ==========
+        document.addEventListener('DOMContentLoaded', () => {
+            initPreparation();
+            renderShoppingList();
+            createSnowflakes();
+        });
+    </script>
+</body>
+</html>

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>東北冰雪奇緣 - 旅行行程</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -75,14 +76,6 @@
         }
         
         .nav-item.active i { color: var(--warm-orange); }
-        
-        /* 頁面容器 */
-        .page {
-            display: none;
-            animation: fadeIn 0.4s ease;
-        }
-        
-        .page.active { display: block; }
         
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
@@ -239,179 +232,6 @@
         .highlight-card h4 { font-size: 1em; margin-bottom: 5px; }
         .highlight-card p { font-size: 0.85em; opacity: 0.7; }
         
-        /* 每日行程選單 */
-        .days-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-            gap: 10px;
-            margin-bottom: 30px;
-        }
-        
-        .day-btn {
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 15px;
-            padding: 15px 10px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s;
-            color: var(--snow-white);
-        }
-        
-        .day-btn:hover, .day-btn.active {
-            background: var(--warm-orange);
-            transform: scale(1.05);
-        }
-        
-        .day-btn .day-num {
-            font-size: 1.5em;
-            font-weight: bold;
-            display: block;
-        }
-        
-        .day-btn .day-date {
-            font-size: 0.8em;
-            opacity: 0.8;
-        }
-        
-        /* 每日詳細內容 */
-        .day-content {
-            display: none;
-            animation: fadeIn 0.4s ease;
-        }
-        
-        .day-content.active { display: block; }
-        
-        .day-hero {
-            position: relative;
-            height: 250px;
-            border-radius: 20px;
-            overflow: hidden;
-            margin-bottom: 25px;
-        }
-        
-        .day-hero img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .day-hero-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 30px 20px 20px;
-            background: linear-gradient(transparent, rgba(0,0,0,0.8));
-        }
-        
-        .day-hero-overlay h2 {
-            font-size: 1.5em;
-            margin-bottom: 5px;
-        }
-        
-        .day-hero-overlay .date {
-            color: var(--warm-orange);
-            font-size: 0.95em;
-        }
-        
-        /* 活動清單 */
-        .activity-section {
-            background: var(--glass-bg);
-            border-radius: 20px;
-            padding: 25px;
-            margin-bottom: 20px;
-            border: 1px solid var(--glass-border);
-        }
-        
-        .activity-section h3 {
-            color: var(--ice-blue);
-            margin-bottom: 20px;
-            font-size: 1.2em;
-        }
-        
-        .activity-section h3 i { margin-right: 10px; }
-        
-        .activity-item {
-            display: flex;
-            align-items: flex-start;
-            padding: 15px 0;
-            border-bottom: 1px solid var(--glass-border);
-        }
-        
-        .activity-item:last-child { border-bottom: none; }
-        
-        .activity-icon {
-            width: 45px;
-            height: 45px;
-            background: var(--warm-orange);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 15px;
-            flex-shrink: 0;
-        }
-        
-        .activity-icon i { font-size: 1.2em; }
-        
-        .activity-info { flex: 1; }
-        .activity-info h4 { margin-bottom: 5px; font-size: 1.05em; }
-        .activity-info p { opacity: 0.75; font-size: 0.9em; line-height: 1.5; }
-        
-        .map-link {
-            display: inline-flex;
-            align-items: center;
-            background: #4285f4;
-            color: white;
-            padding: 6px 12px;
-            border-radius: 20px;
-            text-decoration: none;
-            font-size: 0.8em;
-            margin-top: 8px;
-            transition: background 0.3s;
-        }
-        
-        .map-link:hover { background: #3367d6; }
-        .map-link i { margin-right: 5px; }
-        
-        /* 住宿與餐食 */
-        .info-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 15px;
-        }
-        
-        .info-card {
-            background: var(--glass-bg);
-            border-radius: 15px;
-            padding: 20px;
-            border: 1px solid var(--glass-border);
-        }
-        
-        .info-card h4 {
-            color: var(--warm-orange);
-            margin-bottom: 15px;
-            font-size: 1.1em;
-        }
-        
-        .info-card h4 i { margin-right: 8px; }
-        
-        .info-card p {
-            opacity: 0.9;
-            line-height: 1.6;
-        }
-        
-        .meal-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 8px 0;
-            border-bottom: 1px solid var(--glass-border);
-        }
-        
-        .meal-item:last-child { border-bottom: none; }
-        .meal-label { color: var(--ice-blue); }
-        
         /* 圖片畫廊 */
         .gallery {
             display: grid;
@@ -509,17 +329,6 @@
             
             .highlight-grid { grid-template-columns: repeat(2, 1fr); }
             
-            .days-grid { grid-template-columns: repeat(3, 1fr); }
-            .day-btn { padding: 12px 8px; }
-            .day-btn .day-num { font-size: 1.2em; }
-            
-            .day-hero { height: 200px; }
-            .day-hero-overlay h2 { font-size: 1.2em; }
-            
-            .activity-section { padding: 20px 15px; }
-            
-            .info-cards { grid-template-columns: 1fr; }
-            
             .price-amount { font-size: 2.5em; }
             
             .gallery { grid-template-columns: repeat(2, 1fr); }
@@ -530,8 +339,6 @@
             .hero-subtitle { font-size: 1em; }
             .trip-badges { gap: 10px; }
             .badge { padding: 8px 12px; font-size: 0.8em; }
-            
-            .days-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
             
             .highlight-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
             .highlight-card { padding: 20px 10px; }
@@ -585,495 +392,147 @@
     </div>
     
     <!-- ========== 首頁 ========== -->
-    <div class="page active" id="page-home">
-        <div class="hero">
-            <div class="hero-bg"></div>
-            <div class="hero-content">
-                <div class="hero-logo">❄️🏔️✈️</div>
-                <h1>東北冰雪奇緣</h1>
-                <p class="hero-subtitle">雪鄉蘑菇屋 • 冰雪大世界 • 魔界長白山</p>
-                <div class="trip-badges">
-                    <div class="badge"><i class="fas fa-calendar-alt"></i>2026/01/10 - 01/18</div>
-                    <div class="badge"><i class="fas fa-clock"></i>9天8夜</div>
-                    <div class="badge"><i class="fas fa-plane"></i>台北出發</div>
+    <div class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <div class="hero-logo">❄️🏔️✈️</div>
+            <h1>東北冰雪奇緣</h1>
+            <p class="hero-subtitle">雪鄉蘑菇屋 • 冰雪大世界 • 魔界長白山</p>
+            <div class="trip-badges">
+                <div class="badge"><i class="fas fa-calendar-alt"></i>2026/01/10 - 01/18</div>
+                <div class="badge"><i class="fas fa-clock"></i>9天8夜</div>
+                <div class="badge"><i class="fas fa-plane"></i>台北出發</div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 行程概述 -->
+    <section class="section">
+        <h2 class="section-title"><i class="fas fa-route"></i>行程概述</h2>
+        <div class="overview-grid">
+            <div class="overview-card">
+                <img src="https://images.unsplash.com/photo-1548919973-5cef591cdbc9?w=800" alt="哈爾濱冰雪">
+                <div class="overview-card-content">
+                    <h3>🧊 冰雪王國 - 哈爾濱</h3>
+                    <p>探訪世界最大的冰雪主題樂園「冰雪大世界」，漫步中央大街欣賞百年建築，品嚐道地東北美食。</p>
+                </div>
+            </div>
+            <div class="overview-card">
+                <img src="https://images.unsplash.com/photo-1478719059408-592965723cbc?w=800" alt="雪鄉">
+                <div class="overview-card-content">
+                    <h3>🏠 童話世界 - 雪鄉</h3>
+                    <p>夢幻雪鄉的蘑菇屋、雪韻大街，彷彿走進童話故事裡，體驗最純粹的雪國風情。</p>
+                </div>
+            </div>
+            <div class="overview-card">
+                <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800" alt="長白山">
+                <div class="overview-card-content">
+                    <h3>🏔️ 神秘仙境 - 長白山</h3>
+                    <p>登臨長白山天池，欣賞神秘的火山口湖，體驗魔界霧淞漂流的夢幻景色。</p>
                 </div>
             </div>
         </div>
-        
-        <!-- 行程概述 -->
-        <section class="section">
-            <h2 class="section-title"><i class="fas fa-route"></i>行程概述</h2>
-            <div class="overview-grid">
-                <div class="overview-card">
-                    <img src="https://images.unsplash.com/photo-1548919973-5cef591cdbc9?w=800" alt="哈爾濱冰雪">
-                    <div class="overview-card-content">
-                        <h3>🧊 冰雪王國 - 哈爾濱</h3>
-                        <p>探訪世界最大的冰雪主題樂園「冰雪大世界」，漫步中央大街欣賞百年建築，品嚐道地東北美食。</p>
-                    </div>
-                </div>
-                <div class="overview-card">
-                    <img src="https://images.unsplash.com/photo-1478719059408-592965723cbc?w=800" alt="雪鄉">
-                    <div class="overview-card-content">
-                        <h3>🏠 童話世界 - 雪鄉</h3>
-                        <p>夢幻雪鄉的蘑菇屋、雪韻大街，彷彿走進童話故事裡，體驗最純粹的雪國風情。</p>
-                    </div>
-                </div>
-                <div class="overview-card">
-                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800" alt="長白山">
-                    <div class="overview-card-content">
-                        <h3>🏔️ 神秘仙境 - 長白山</h3>
-                        <p>登臨長白山天池，欣賞神秘的火山口湖，體驗魔界霧淞漂流的夢幻景色。</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- 行程亮點 -->
-        <section class="section">
-            <h2 class="section-title"><i class="fas fa-star"></i>行程亮點</h2>
-            <div class="highlight-grid">
-                <div class="highlight-card">
-                    <i class="fas fa-snowflake"></i>
-                    <h4>冰雪大世界</h4>
-                    <p>世界最大冰雪樂園</p>
-                </div>
-                <div class="highlight-card">
-                    <i class="fas fa-home"></i>
-                    <h4>雪鄉蘑菇屋</h4>
-                    <p>童話般的雪中村莊</p>
-                </div>
-                <div class="highlight-card">
-                    <i class="fas fa-mountain"></i>
-                    <h4>長白山天池</h4>
-                    <p>神秘的火山口湖</p>
-                </div>
-                <div class="highlight-card">
-                    <i class="fas fa-magic"></i>
-                    <h4>魔界霧淞</h4>
-                    <p>如夢似幻霧淞仙境</p>
-                </div>
-                <div class="highlight-card">
-                    <i class="fas fa-chess-rook"></i>
-                    <h4>伏爾加莊園</h4>
-                    <p>俄式風情園區</p>
-                </div>
-                <div class="highlight-card">
-                    <i class="fas fa-fire"></i>
-                    <h4>冰宮火鍋</h4>
-                    <p>冰與火極致體驗</p>
-                </div>
-            </div>
-        </section>
-        
-        <!-- 價格 -->
-        <section class="section">
-            <div class="price-section">
-                <h3>💎 團費（含稅）</h3>
-                <div class="price-amount">NT$ 48,500</div>
-                <p class="price-note">每位旅客</p>
-                <div class="price-features">
-                    <span class="price-feature">✓ 無自費</span>
-                    <span class="price-feature">✓ 無購物站</span>
-                    <span class="price-feature">✓ 含稅金</span>
-                </div>
-            </div>
-        </section>
-        
-        <!-- 精選照片 -->
-        <section class="section">
-            <h2 class="section-title"><i class="fas fa-images"></i>精選風景</h2>
-            <div class="gallery">
-                <img src="https://images.unsplash.com/photo-1516912481808-3406841bd33c?w=400" alt="雪景" onclick="openLightbox(this)">
-                <img src="https://images.unsplash.com/photo-1491002052546-bf38f186af56?w=400" alt="冬季湖泊" onclick="openLightbox(this)">
-                <img src="https://images.unsplash.com/photo-1548919973-5cef591cdbc9?w=400" alt="冰雕" onclick="openLightbox(this)">
-                <img src="https://images.unsplash.com/photo-1517299321609-52687d1bc55a?w=400" alt="雪中小屋" onclick="openLightbox(this)">
-                <img src="https://images.unsplash.com/photo-1483921020237-2ff51e8e4b22?w=400" alt="冬季森林" onclick="openLightbox(this)">
-                <img src="https://images.unsplash.com/photo-1418985991508-e47386d96a71?w=400" alt="雪山" onclick="openLightbox(this)">
-            </div>
-        </section>
-        
-        <footer>
-            <div class="contact-info">
-                <div class="contact-item">
-                    <i class="fas fa-building"></i>
-                    <span>東勢旅行社</span>
-                </div>
-                <div class="contact-item">
-                    <i class="fas fa-user"></i>
-                    <span>業務代表：賴美惠</span>
-                </div>
-                <div class="contact-item">
-                    <i class="fas fa-phone"></i>
-                    <span>02-25423355</span>
-                </div>
-            </div>
-            <p style="opacity: 0.5; font-size: 0.9em;">© 2026 東北冰雪奇緣 旅行行程</p>
-        </footer>
-    </div>
+    </section>
     
-    <!-- ========== 每日行程頁 ========== -->
-    <div class="page" id="page-itinerary">
-        <section class="section" style="padding-top: 30px;">
-            <h2 class="section-title"><i class="fas fa-calendar-alt"></i>每日行程</h2>
-            
-            <!-- 日期選擇 -->
-            <div class="days-grid" id="days-selector">
-                <!-- 由 JS 生成 -->
+    <!-- 行程亮點 -->
+    <section class="section">
+        <h2 class="section-title"><i class="fas fa-star"></i>行程亮點</h2>
+        <div class="highlight-grid">
+            <div class="highlight-card">
+                <i class="fas fa-snowflake"></i>
+                <h4>冰雪大世界</h4>
+                <p>世界最大冰雪樂園</p>
             </div>
-            
-            <!-- 每日內容 -->
-            <div id="days-content">
-                <!-- 由 JS 生成 -->
+            <div class="highlight-card">
+                <i class="fas fa-home"></i>
+                <h4>雪鄉蘑菇屋</h4>
+                <p>童話般的雪中村莊</p>
             </div>
-        </section>
-    </div>
+            <div class="highlight-card">
+                <i class="fas fa-mountain"></i>
+                <h4>長白山天池</h4>
+                <p>神秘的火山口湖</p>
+            </div>
+            <div class="highlight-card">
+                <i class="fas fa-magic"></i>
+                <h4>魔界霧淞</h4>
+                <p>如夢似幻霧淞仙境</p>
+            </div>
+            <div class="highlight-card">
+                <i class="fas fa-chess-rook"></i>
+                <h4>伏爾加莊園</h4>
+                <p>俄式風情園區</p>
+            </div>
+            <div class="highlight-card">
+                <i class="fas fa-fire"></i>
+                <h4>冰宮火鍋</h4>
+                <p>冰與火極致體驗</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 價格 -->
+    <section class="section">
+        <div class="price-section">
+            <h3>💎 團費（含稅）</h3>
+            <div class="price-amount">NT$ 48,500</div>
+            <p class="price-note">每位旅客</p>
+            <div class="price-features">
+                <span class="price-feature">✓ 無自費</span>
+                <span class="price-feature">✓ 無購物站</span>
+                <span class="price-feature">✓ 含稅金</span>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 精選照片 -->
+    <section class="section">
+        <h2 class="section-title"><i class="fas fa-images"></i>精選風景</h2>
+        <div class="gallery">
+            <img src="https://images.unsplash.com/photo-1516912481808-3406841bd33c?w=400" alt="雪景" onclick="openLightbox(this)">
+            <img src="https://images.unsplash.com/photo-1491002052546-bf38f186af56?w=400" alt="冬季湖泊" onclick="openLightbox(this)">
+            <img src="https://images.unsplash.com/photo-1548919973-5cef591cdbc9?w=400" alt="冰雕" onclick="openLightbox(this)">
+            <img src="https://images.unsplash.com/photo-1517299321609-52687d1bc55a?w=400" alt="雪中小屋" onclick="openLightbox(this)">
+            <img src="https://images.unsplash.com/photo-1483921020237-2ff51e8e4b22?w=400" alt="冬季森林" onclick="openLightbox(this)">
+            <img src="https://images.unsplash.com/photo-1418985991508-e47386d96a71?w=400" alt="雪山" onclick="openLightbox(this)">
+        </div>
+    </section>
+    
+    <footer>
+        <div class="contact-info">
+            <div class="contact-item">
+                <i class="fas fa-building"></i>
+                <span>東勢旅行社</span>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-user"></i>
+                <span>業務代表：賴美惠</span>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-phone"></i>
+                <span>02-25423355</span>
+            </div>
+        </div>
+        <p style="opacity: 0.5; font-size: 0.9em;">© 2026 東北冰雪奇緣 旅行行程</p>
+    </footer>
     
     <!-- 底部導航 -->
     <nav class="bottom-nav">
-        <a href="#" class="nav-item active" data-page="home">
+        <a href="index.html" class="nav-item active">
             <i class="fas fa-home"></i>
             <span>首頁</span>
         </a>
-        <a href="#" class="nav-item" data-page="itinerary">
+        <a href="itinerary.html" class="nav-item">
             <i class="fas fa-map-marked-alt"></i>
             <span>行程</span>
         </a>
-        <a href="tel:02-25423355" class="nav-item">
-            <i class="fas fa-phone"></i>
-            <span>聯繫</span>
+        <a href="checklist.html" class="nav-item">
+            <i class="fas fa-list-check"></i>
+            <span>清單</span>
         </a>
     </nav>
     
     <script>
-        // 行程資料（含 Google Map 座標）
-        const itineraryData = [
-            {
-                day: 1,
-                date: "2026/01/10 (六)",
-                title: "桃園 ✈ 北京 ✈ 長春",
-                subtitle: "啟程 - 踏上冰雪之旅",
-                image: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=800",
-                activities: [
-                    { name: "桃園國際機場集合", desc: "搭乘中國國際航空飛往北京", icon: "fa-plane-departure", location: "桃園國際機場", coords: "25.0797,121.2342" },
-                    { name: "北京首都機場轉機", desc: "轉機前往長春", icon: "fa-plane", location: "北京首都國際機場", coords: "40.0799,116.6031" },
-                    { name: "抵達長春龍嘉機場", desc: "專車接送至酒店", icon: "fa-plane-arrival", location: "長春龍嘉國際機場", coords: "43.9962,126.3968" }
-                ],
-                hotel: { name: "長春高新益田福朋喜來登酒店", stars: 5, coords: "43.8256,125.2847" },
-                meals: { 早: "自理", 午: "機上餐食", 晚: "簡單宵夜點心" },
-                gallery: [
-                    "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=400",
-                    "https://images.unsplash.com/photo-1529074963764-98f45c47344b?w=400"
-                ]
-            },
-            {
-                day: 2,
-                date: "2026/01/11 (日)",
-                title: "長春 → 淨月潭 → 吉林",
-                subtitle: "藍冰奇觀與滿族風情",
-                image: "https://images.unsplash.com/photo-1491002052546-bf38f186af56?w=800",
-                activities: [
-                    { name: "淨月潭國家森林公園", desc: "欣賞壯觀的藍冰奇景，冬季限定的自然奇觀", icon: "fa-snowflake", location: "淨月潭國家森林公園", coords: "43.7884,125.4569" },
-                    { name: "偽滿皇宮地質宮外觀", desc: "感受歷史建築的雄偉", icon: "fa-landmark", location: "長春地質宮", coords: "43.8868,125.3295" },
-                    { name: "長春文化廣場", desc: "欣賞城市地標建築群", icon: "fa-monument", location: "長春文化廣場", coords: "43.8873,125.3279" },
-                    { name: "車遊臨江門大橋", desc: "欣賞松花江冬季美景", icon: "fa-bridge", location: "臨江門大橋", coords: "43.8448,126.5524" },
-                    { name: "天主教堂廣場", desc: "歐式建築巡禮", icon: "fa-church", location: "吉林天主教堂", coords: "43.8422,126.5561" }
-                ],
-                hotel: { name: "吉林紫光苑華美達酒店", stars: 5, coords: "43.8376,126.5494" },
-                meals: { 早: "酒店內用", 午: "中式合菜", 晚: "烏拉滿族火鍋 🍲" },
-                gallery: [
-                    "https://images.unsplash.com/photo-1491002052546-bf38f186af56?w=400",
-                    "https://images.unsplash.com/photo-1483921020237-2ff51e8e4b22?w=400",
-                    "https://images.unsplash.com/photo-1517299321609-52687d1bc55a?w=400"
-                ]
-            },
-            {
-                day: 3,
-                date: "2026/01/12 (一)",
-                title: "吉林 → 霧淞長廊 → 長白山魔界",
-                subtitle: "夢幻霧淞仙境",
-                image: "https://images.unsplash.com/photo-1610448721566-47369c768e70?w=800",
-                activities: [
-                    { name: "霧淞長廊", desc: "觀賞吉林霧淞四大奇觀之一，銀裝素裹的樹掛美景", icon: "fa-tree", location: "吉林霧淞島", coords: "44.0167,126.6833" },
-                    { name: "長白山魔界風景區", desc: "如夢如幻的霧淞仙境，攝影愛好者的天堂", icon: "fa-wand-magic-sparkles", location: "長白山魔界景區", coords: "42.0556,128.0647" },
-                    { name: "霧淞漂流體驗", desc: "乘船穿梭於霧淞仙境之中", icon: "fa-ship", location: "魔界漂流", coords: "42.0556,128.0647" }
-                ],
-                hotel: { name: "長白山王朝聖地溫泉酒店", stars: 5, coords: "42.0419,128.0875" },
-                meals: { 早: "酒店內用", 午: "朝鮮風味", 晚: "長白山珍宴 🦌" },
-                gallery: [
-                    "https://images.unsplash.com/photo-1610448721566-47369c768e70?w=400",
-                    "https://images.unsplash.com/photo-1483921020237-2ff51e8e4b22?w=400",
-                    "https://images.unsplash.com/photo-1418985991508-e47386d96a71?w=400"
-                ]
-            },
-            {
-                day: 4,
-                date: "2026/01/13 (二)",
-                title: "長白山北坡風景區",
-                subtitle: "登臨天池 壯麗雪山",
-                image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800",
-                activities: [
-                    { name: "長白山北坡景區", desc: "搭乘環保車及倒站車登山", icon: "fa-bus", location: "長白山北坡", coords: "42.0069,128.0575" },
-                    { name: "天池", desc: "中國最大的火山口湖，神秘的天池水怪傳說", icon: "fa-water", location: "長白山天池", coords: "42.0028,128.0594" },
-                    { name: "小天池", desc: "隱藏在森林中的翠綠寶石", icon: "fa-droplet", location: "長白山小天池", coords: "42.0341,128.0612" },
-                    { name: "溫泉群", desc: "欣賞熱氣騰騰的火山溫泉", icon: "fa-hot-tub-person", location: "長白山溫泉群", coords: "42.0272,128.0644" },
-                    { name: "長白瀑布", desc: "68米落差的壯麗瀑布", icon: "fa-tornado", location: "長白瀑布", coords: "42.0247,128.0650" },
-                    { name: "綠淵潭", desc: "碧綠如玉的高山潭水", icon: "fa-circle", location: "綠淵潭", coords: "42.0389,128.0589" }
-                ],
-                hotel: { name: "敦化泰格酒店", stars: 4, coords: "43.3722,128.2317" },
-                meals: { 早: "酒店內用", 午: "中式合菜", 晚: "烤肉風味 🥩" },
-                gallery: [
-                    "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400",
-                    "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400",
-                    "https://images.unsplash.com/photo-1454496522488-7a8e488e8606?w=400"
-                ]
-            },
-            {
-                day: 5,
-                date: "2026/01/14 (三)",
-                title: "鏡泊湖 → 雪鄉",
-                subtitle: "冰瀑奇觀與童話雪鄉",
-                image: "https://images.unsplash.com/photo-1478719059408-592965723cbc?w=800",
-                activities: [
-                    { name: "鏡泊湖吊水樓冰瀑", desc: "壯觀的冰瀑布奇景，冬季限定", icon: "fa-icicles", location: "鏡泊湖景區", coords: "44.0000,128.8333" },
-                    { name: "鏡泊湖觀冬捕", desc: "體驗東北傳統冬季捕魚文化", icon: "fa-fish", location: "鏡泊湖", coords: "44.0000,128.8333" },
-                    { name: "抵達雪鄉", desc: "入住雪鄉民宿，感受夢幻雪夜", icon: "fa-house-chimney", location: "中國雪鄉", coords: "44.1667,128.8833" },
-                    { name: "雪鄉夜景", desc: "漫步雪韻大街，欣賞燈火璀璨的雪夜美景", icon: "fa-moon", location: "雪鄉雪韻大街", coords: "44.1667,128.8833" }
-                ],
-                hotel: { name: "雪鄉內民宿", stars: 3, note: "獨立衛浴", coords: "44.1667,128.8833" },
-                meals: { 早: "酒店內用", 午: "魚宴風味 🐟", 晚: "農家宴 🥘" },
-                gallery: [
-                    "https://images.unsplash.com/photo-1478719059408-592965723cbc?w=400",
-                    "https://images.unsplash.com/photo-1517299321609-52687d1bc55a?w=400",
-                    "https://images.unsplash.com/photo-1516912481808-3406841bd33c?w=400"
-                ]
-            },
-            {
-                day: 6,
-                date: "2026/01/15 (四)",
-                title: "雪鄉 → 伏爾加莊園",
-                subtitle: "雪中漫步與俄式風情",
-                image: "https://images.unsplash.com/photo-1517299321609-52687d1bc55a?w=800",
-                activities: [
-                    { name: "雪韻大街", desc: "網紅打卡聖地，蘑菇屋雪景", icon: "fa-camera", location: "雪鄉雪韻大街", coords: "44.1667,128.8833" },
-                    { name: "觀光棧道", desc: "登高俯瞰整個雪鄉全景", icon: "fa-stairs", location: "雪鄉棧道", coords: "44.1667,128.8833" },
-                    { name: "雪鄉郵局", desc: "贈送明信片，寄送祝福給親友", icon: "fa-envelope", location: "雪鄉郵局", coords: "44.1667,128.8833" },
-                    { name: "民俗博物館", desc: "了解東北民俗文化", icon: "fa-museum", location: "雪鄉民俗博物館", coords: "44.1667,128.8833" },
-                    { name: "前往伏爾加莊園", desc: "車程約4小時", icon: "fa-bus", location: "伏爾加莊園", coords: "45.8342,126.8214" }
-                ],
-                hotel: { name: "伏爾加莊園賓館", stars: 4, coords: "45.8342,126.8214" },
-                meals: { 早: "酒店內用", 午: "中式合菜", 晚: "莊園俄式西餐 🍷" },
-                gallery: [
-                    "https://images.unsplash.com/photo-1517299321609-52687d1bc55a?w=400",
-                    "https://images.unsplash.com/photo-1516912481808-3406841bd33c?w=400",
-                    "https://images.unsplash.com/photo-1610448721566-47369c768e70?w=400"
-                ]
-            },
-            {
-                day: 7,
-                date: "2026/01/16 (五)",
-                title: "伏爾加莊園 → 哈爾濱 → 冰雪大世界",
-                subtitle: "俄羅斯風情與冰雪王國",
-                image: "https://images.unsplash.com/photo-1548919973-5cef591cdbc9?w=800",
-                activities: [
-                    { name: "伏爾加莊園", desc: "含高山雪圈體驗，暢玩雪地活動", icon: "fa-person-skiing", location: "伏爾加莊園", coords: "45.8342,126.8214" },
-                    { name: "伏特加酒堡", desc: "品嚐俄式伏特加", icon: "fa-wine-bottle", location: "伏特加酒堡", coords: "45.8342,126.8214" },
-                    { name: "彼得洛夫藝術宮", desc: "欣賞俄羅斯藝術珍品", icon: "fa-palette", location: "彼得洛夫藝術宮", coords: "45.8342,126.8214" },
-                    { name: "百年濱洲鐵路橋", desc: "歷史文化遺產", icon: "fa-bridge", location: "濱洲鐵路橋", coords: "45.7752,126.6185" },
-                    { name: "音樂公園網紅大雪人", desc: "必拍打卡點", icon: "fa-snowman", location: "哈爾濱音樂公園", coords: "45.7767,126.6178" },
-                    { name: "中央大街", desc: "百年歐式建築步行街", icon: "fa-street-view", location: "中央大街", coords: "45.7749,126.6175" },
-                    { name: "聖索菲亞教堂廣場", desc: "著名的東正教堂", icon: "fa-church", location: "聖索菲亞教堂", coords: "45.7697,126.6278" },
-                    { name: "哈爾濱冰雪大世界", desc: "世界最大冰雪主題樂園！冰雕、雪雕、冰滑梯應有盡有", icon: "fa-snowflake", location: "冰雪大世界", coords: "45.8039,126.5353" }
-                ],
-                hotel: { name: "哈爾濱松北融創皇冠假日酒店", stars: 5, coords: "45.8056,126.5328" },
-                meals: { 早: "酒店內用", 午: "中式合菜", 晚: "香格里拉冰宮火鍋 🧊🔥" },
-                gallery: [
-                    "https://images.unsplash.com/photo-1548919973-5cef591cdbc9?w=400",
-                    "https://images.unsplash.com/photo-1516912481808-3406841bd33c?w=400",
-                    "https://images.unsplash.com/photo-1517299321609-52687d1bc55a?w=400",
-                    "https://images.unsplash.com/photo-1610448721566-47369c768e70?w=400"
-                ]
-            },
-            {
-                day: 8,
-                date: "2026/01/17 (六)",
-                title: "哈爾濱 ✈ 上海",
-                subtitle: "從冰雪王國到繁華都市",
-                image: "https://images.unsplash.com/photo-1474181487882-5abf3f0ba6c2?w=800",
-                activities: [
-                    { name: "搭機飛往上海", desc: "告別冰雪哈爾濱", icon: "fa-plane", location: "哈爾濱太平國際機場", coords: "45.6234,126.2503" },
-                    { name: "EKA天物創意園區", desc: "時尚藝術與創意空間", icon: "fa-building", location: "EKA天物創意園區", coords: "31.2234,121.4581" },
-                    { name: "外觀浦東三大高樓", desc: "上海中心、環球金融中心、金茂大廈", icon: "fa-city", location: "上海陸家嘴", coords: "31.2397,121.4998" }
-                ],
-                hotel: { name: "上海中優城市萬豪酒店", stars: 5, coords: "31.2304,121.4737" },
-                meals: { 早: "酒店內用", 午: "發餐費自理", 晚: "上海本幫菜 🥢" },
-                gallery: [
-                    "https://images.unsplash.com/photo-1474181487882-5abf3f0ba6c2?w=400",
-                    "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400"
-                ]
-            },
-            {
-                day: 9,
-                date: "2026/01/18 (日)",
-                title: "上海 → 桃園",
-                subtitle: "圓滿歸程 回到溫暖的家",
-                image: "https://images.unsplash.com/photo-1529074963764-98f45c47344b?w=800",
-                activities: [
-                    { name: "新場古鎮", desc: "千年水鄉古鎮，江南風情", icon: "fa-torii-gate", location: "新場古鎮", coords: "31.0833,121.6333" },
-                    { name: "上海浦東機場", desc: "搭機返回台北桃園機場", icon: "fa-plane-departure", location: "上海浦東國際機場", coords: "31.1443,121.8083" },
-                    { name: "抵達桃園國際機場", desc: "結束美好的冰雪之旅，回到溫暖的家", icon: "fa-house-heart", location: "桃園國際機場", coords: "25.0797,121.2342" }
-                ],
-                hotel: { name: "溫暖的家 🏠", stars: 0, coords: "" },
-                meals: { 早: "酒店內用", 午: "機上簡餐 + 生煎包" },
-                gallery: [
-                    "https://images.unsplash.com/photo-1529074963764-98f45c47344b?w=400",
-                    "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=400"
-                ]
-            }
-        ];
-        
-        // 生成日期選擇器
-        function renderDaysSelector() {
-            const container = document.getElementById('days-selector');
-            itineraryData.forEach((day, index) => {
-                const btn = document.createElement('div');
-                btn.className = 'day-btn' + (index === 0 ? ' active' : '');
-                btn.innerHTML = `
-                    <span class="day-num">D${day.day}</span>
-                    <span class="day-date">${day.date.split(' ')[0].slice(5)}</span>
-                `;
-                btn.onclick = () => showDay(index);
-                container.appendChild(btn);
-            });
-        }
-        
-        // 生成每日內容
-        function renderDaysContent() {
-            const container = document.getElementById('days-content');
-            itineraryData.forEach((day, index) => {
-                const content = document.createElement('div');
-                content.className = 'day-content' + (index === 0 ? ' active' : '');
-                content.id = `day-${day.day}`;
-                
-                // 生成活動列表
-                const activitiesHtml = day.activities.map(act => `
-                    <div class="activity-item">
-                        <div class="activity-icon">
-                            <i class="fas ${act.icon}"></i>
-                        </div>
-                        <div class="activity-info">
-                            <h4>${act.name}</h4>
-                            <p>${act.desc}</p>
-                            ${act.coords ? `
-                                <a href="https://www.google.com/maps/search/?api=1&query=${act.coords}" 
-                                   target="_blank" class="map-link">
-                                    <i class="fas fa-map-location-dot"></i>
-                                    ${act.location} - 查看地圖
-                                </a>
-                            ` : ''}
-                        </div>
-                    </div>
-                `).join('');
-                
-                // 生成餐食
-                const mealsHtml = Object.entries(day.meals).map(([key, val]) => `
-                    <div class="meal-item">
-                        <span class="meal-label">${key}餐</span>
-                        <span>${val}</span>
-                    </div>
-                `).join('');
-                
-                // 生成圖片畫廊
-                const galleryHtml = day.gallery.map(img => `
-                    <img src="${img}" alt="景點照片" onclick="openLightbox(this)">
-                `).join('');
-                
-                // 住宿星級
-                const starsHtml = day.hotel.stars > 0 
-                    ? '⭐'.repeat(day.hotel.stars) 
-                    : '';
-                
-                content.innerHTML = `
-                    <div class="day-hero">
-                        <img src="${day.image}" alt="${day.title}">
-                        <div class="day-hero-overlay">
-                            <span class="date">DAY ${day.day} | ${day.date}</span>
-                            <h2>${day.title}</h2>
-                            <p style="opacity:0.8; margin-top:5px;">${day.subtitle}</p>
-                        </div>
-                    </div>
-                    
-                    <div class="activity-section">
-                        <h3><i class="fas fa-route"></i>今日行程</h3>
-                        ${activitiesHtml}
-                    </div>
-                    
-                    <div class="info-cards">
-                        <div class="info-card">
-                            <h4><i class="fas fa-hotel"></i>今晚住宿</h4>
-                            <p>${day.hotel.name} ${starsHtml}</p>
-                            ${day.hotel.note ? `<p style="opacity:0.7; font-size:0.9em;">${day.hotel.note}</p>` : ''}
-                            ${day.hotel.coords ? `
-                                <a href="https://www.google.com/maps/search/?api=1&query=${day.hotel.coords}" 
-                                   target="_blank" class="map-link" style="margin-top:10px;">
-                                    <i class="fas fa-map-location-dot"></i>查看酒店位置
-                                </a>
-                            ` : ''}
-                        </div>
-                        <div class="info-card">
-                            <h4><i class="fas fa-utensils"></i>今日餐食</h4>
-                            ${mealsHtml}
-                        </div>
-                    </div>
-                    
-                    <div class="activity-section" style="margin-top: 20px;">
-                        <h3><i class="fas fa-images"></i>風景照片</h3>
-                        <div class="gallery">
-                            ${galleryHtml}
-                        </div>
-                    </div>
-                `;
-                
-                container.appendChild(content);
-            });
-        }
-        
-        // 切換顯示的日期
-        function showDay(index) {
-            // 更新按鈕狀態
-            document.querySelectorAll('.day-btn').forEach((btn, i) => {
-                btn.classList.toggle('active', i === index);
-            });
-            
-            // 更新內容
-            document.querySelectorAll('.day-content').forEach((content, i) => {
-                content.classList.toggle('active', i === index);
-            });
-            
-            // 滾動到頂部
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-        
-        // 頁面切換
-        document.querySelectorAll('.nav-item[data-page]').forEach(item => {
-            item.addEventListener('click', (e) => {
-                e.preventDefault();
-                const page = item.dataset.page;
-                
-                // 更新導航狀態
-                document.querySelectorAll('.nav-item[data-page]').forEach(nav => {
-                    nav.classList.toggle('active', nav === item);
-                });
-                
-                // 切換頁面
-                document.querySelectorAll('.page').forEach(p => {
-                    p.classList.toggle('active', p.id === `page-${page}`);
-                });
-                
-                // 滾動到頂部
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
-        });
-        
         // 圖片燈箱
         function openLightbox(img) {
             const lightbox = document.getElementById('lightbox');
@@ -1109,8 +568,6 @@
         
         // 初始化
         document.addEventListener('DOMContentLoaded', () => {
-            renderDaysSelector();
-            renderDaysContent();
             createSnowflakes();
         });
     </script>
