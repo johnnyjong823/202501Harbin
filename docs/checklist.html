@@ -619,12 +619,12 @@
         
         // ========== 行前準備功能 ==========
         function getCheckedItems() {
-            const saved = sessionStorage.getItem('preparationChecked');
+            const saved = localStorage.getItem('preparationChecked');
             return saved ? JSON.parse(saved) : {};
         }
         
         function saveCheckedItems(checked) {
-            sessionStorage.setItem('preparationChecked', JSON.stringify(checked));
+            localStorage.setItem('preparationChecked', JSON.stringify(checked));
         }
         
         function renderPreparationList(containerId, items, category) {
@@ -673,7 +673,7 @@
         
         function resetPreparation() {
             if (confirm('確定要重置所有行前準備項目嗎？')) {
-                sessionStorage.removeItem('preparationChecked');
+                localStorage.removeItem('preparationChecked');
                 initPreparation();
             }
         }
