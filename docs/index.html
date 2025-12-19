@@ -264,6 +264,204 @@
         
         .gallery img:hover { transform: scale(1.05); }
         
+        /* 航班資訊區塊 */
+        .flight-section {
+            background: var(--glass-bg);
+            border-radius: 25px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+        }
+        
+        .flight-card {
+            background: rgba(0,0,0,0.2);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .flight-card:last-child { margin-bottom: 0; }
+        
+        .flight-card-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--glass-border);
+        }
+        
+        .flight-card-header i {
+            font-size: 1.5em;
+            color: var(--warm-orange);
+        }
+        
+        .flight-card-header h4 {
+            color: var(--ice-blue);
+            font-size: 1.1em;
+        }
+        
+        .flight-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(255,255,255,0.05);
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 10px;
+        }
+        
+        .flight-row:last-child { margin-bottom: 0; }
+        
+        .flight-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex: 1;
+        }
+        
+        .flight-time {
+            text-align: center;
+            min-width: 70px;
+        }
+        
+        .flight-time .time {
+            font-size: 1.4em;
+            font-weight: bold;
+            color: var(--snow-white);
+        }
+        
+        .flight-time .city {
+            font-size: 0.8em;
+            opacity: 0.7;
+        }
+        
+        .flight-arrow {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0 15px;
+            flex: 1;
+            max-width: 200px;
+        }
+        
+        .flight-arrow .line {
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--ice-blue), var(--warm-orange));
+            position: relative;
+            margin: 5px 0;
+        }
+        
+        .flight-arrow .line::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: -4px;
+            border: 5px solid transparent;
+            border-left-color: var(--warm-orange);
+        }
+        
+        .flight-arrow .airline {
+            font-size: 0.75em;
+            color: var(--ice-blue);
+            white-space: nowrap;
+        }
+        
+        .flight-arrow .flight-no {
+            font-size: 0.85em;
+            font-weight: bold;
+            color: var(--warm-orange);
+        }
+        
+        .transfer-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background: rgba(255,140,66,0.3);
+            color: var(--warm-orange);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            margin: 10px 0;
+        }
+        
+        .transfer-badge i { font-size: 0.9em; }
+        
+        @media (max-width: 600px) {
+            .flight-section {
+                padding: 15px;
+            }
+            
+            .flight-card {
+                padding: 15px;
+            }
+            
+            .flight-card-header {
+                flex-wrap: wrap;
+            }
+            
+            .flight-card-header h4 {
+                font-size: 0.95em;
+            }
+            
+            .flight-row {
+                flex-direction: column;
+                gap: 0;
+                padding: 12px;
+            }
+            
+            .flight-info {
+                width: 100%;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                gap: 5px;
+            }
+            
+            .flight-time {
+                min-width: 60px;
+                flex-shrink: 0;
+            }
+            
+            .flight-time .time {
+                font-size: 1.1em;
+            }
+            
+            .flight-time .city {
+                font-size: 0.7em;
+                word-break: keep-all;
+            }
+            
+            .flight-arrow {
+                flex: 1;
+                min-width: 0;
+                max-width: none;
+                padding: 0 8px;
+            }
+            
+            .flight-arrow .airline {
+                font-size: 0.65em;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                max-width: 100%;
+            }
+            
+            .flight-arrow .flight-no {
+                font-size: 0.75em;
+            }
+            
+            .flight-arrow .line {
+                width: 100%;
+            }
+            
+            .transfer-badge {
+                font-size: 0.75em;
+                padding: 5px 10px;
+            }
+        }
+        
         /* 價格區塊 */
         .price-section {
             background: linear-gradient(135deg, var(--warm-orange) 0%, #FF6B35 100%);
@@ -480,6 +678,106 @@
                 <i class="fas fa-fire"></i>
                 <h4>冰宮火鍋</h4>
                 <p>冰與火極致體驗</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 航班資訊 -->
+    <section class="section">
+        <h2 class="section-title"><i class="fas fa-plane"></i>航班資訊</h2>
+        <div class="flight-section">
+            <!-- 去程 -->
+            <div class="flight-card">
+                <div class="flight-card-header">
+                    <i class="fas fa-plane-departure"></i>
+                    <h4>去程航班 - 2026/01/10 (六)</h4>
+                </div>
+                <div class="flight-row">
+                    <div class="flight-info">
+                        <div class="flight-time">
+                            <div class="time">13:15</div>
+                            <div class="city">台北桃園</div>
+                        </div>
+                        <div class="flight-arrow">
+                            <span class="airline">中國國際航空</span>
+                            <div class="line"></div>
+                            <span class="flight-no">CA186</span>
+                        </div>
+                        <div class="flight-time">
+                            <div class="time">16:35</div>
+                            <div class="city">北京</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="transfer-badge">
+                    <i class="fas fa-rotate"></i>
+                    北京轉機（等候約 2 小時 25 分鐘）
+                </div>
+                <div class="flight-row">
+                    <div class="flight-info">
+                        <div class="flight-time">
+                            <div class="time">19:00</div>
+                            <div class="city">北京</div>
+                        </div>
+                        <div class="flight-arrow">
+                            <span class="airline">中國國際航空</span>
+                            <div class="line"></div>
+                            <span class="flight-no">CA1647</span>
+                        </div>
+                        <div class="flight-time">
+                            <div class="time">20:50</div>
+                            <div class="city">長春</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 回程 -->
+            <div class="flight-card">
+                <div class="flight-card-header">
+                    <i class="fas fa-plane-arrival"></i>
+                    <h4>回程航班</h4>
+                </div>
+                <p style="font-size: 0.9em; opacity: 0.8; margin-bottom: 10px;">📅 2026/01/17 (六) - 哈爾濱→上海</p>
+                <div class="flight-row">
+                    <div class="flight-info">
+                        <div class="flight-time">
+                            <div class="time">11:10</div>
+                            <div class="city">哈爾濱</div>
+                        </div>
+                        <div class="flight-arrow">
+                            <span class="airline">中國國際航空</span>
+                            <div class="line"></div>
+                            <span class="flight-no">CA8302</span>
+                        </div>
+                        <div class="flight-time">
+                            <div class="time">14:25</div>
+                            <div class="city">上海浦東</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="transfer-badge">
+                    <i class="fas fa-bed"></i>
+                    上海住宿一晚
+                </div>
+                <p style="font-size: 0.9em; opacity: 0.8; margin: 10px 0;">📅 2026/01/18 (日) - 上海→台北</p>
+                <div class="flight-row">
+                    <div class="flight-info">
+                        <div class="flight-time">
+                            <div class="time">14:25</div>
+                            <div class="city">上海浦東</div>
+                        </div>
+                        <div class="flight-arrow">
+                            <span class="airline">中國國際航空</span>
+                            <div class="line"></div>
+                            <span class="flight-no">CA195</span>
+                        </div>
+                        <div class="flight-time">
+                            <div class="time">16:30</div>
+                            <div class="city">台北桃園</div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>

@@ -308,6 +308,127 @@
         .meal-item:last-child { border-bottom: none; }
         .meal-label { color: var(--ice-blue); }
         
+        /* 航班資訊卡片 */
+        .flight-info-section {
+            background: linear-gradient(135deg, rgba(135, 206, 235, 0.15) 0%, rgba(255, 140, 66, 0.1) 100%);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid var(--glass-border);
+        }
+        
+        .flight-info-section h3 {
+            color: var(--ice-blue);
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+        
+        .flight-info-section h3 i { margin-right: 10px; color: var(--warm-orange); }
+        
+        .flight-ticket {
+            background: rgba(0,0,0,0.25);
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 12px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .flight-ticket:last-child { margin-bottom: 0; }
+        
+        .flight-ticket::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(180deg, var(--ice-blue), var(--warm-orange));
+        }
+        
+        .flight-ticket-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+        
+        .flight-endpoint {
+            text-align: center;
+            flex: 1;
+        }
+        
+        .flight-endpoint .time {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: var(--snow-white);
+        }
+        
+        .flight-endpoint .city {
+            font-size: 0.85em;
+            opacity: 0.8;
+            margin-top: 2px;
+        }
+        
+        .flight-middle {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1.5;
+            padding: 0 10px;
+        }
+        
+        .flight-middle .airline {
+            font-size: 0.75em;
+            color: var(--ice-blue);
+            margin-bottom: 5px;
+        }
+        
+        .flight-middle .flight-line {
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--ice-blue), var(--warm-orange));
+            position: relative;
+        }
+        
+        .flight-middle .flight-line::before {
+            content: '✈';
+            position: absolute;
+            right: -5px;
+            top: -10px;
+            font-size: 1.2em;
+            color: var(--warm-orange);
+        }
+        
+        .flight-middle .flight-number {
+            font-size: 0.9em;
+            font-weight: bold;
+            color: var(--warm-orange);
+            margin-top: 5px;
+        }
+        
+        .transfer-notice {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: rgba(255,140,66,0.2);
+            color: var(--warm-orange);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            margin: 10px 0;
+        }
+        
+        .transfer-notice i { font-size: 1em; }
+        
+        @media (max-width: 480px) {
+            .flight-endpoint .time { font-size: 1.2em; }
+            .flight-endpoint .city { font-size: 0.75em; }
+            .flight-middle .airline { font-size: 0.7em; }
+            .flight-middle .flight-number { font-size: 0.8em; }
+        }
+        
         /* 圖片畫廊 */
         .gallery {
             display: grid;
@@ -440,10 +561,14 @@
                 title: "桃園 ✈ 北京 ✈ 長春",
                 subtitle: "啟程 - 踏上冰雪之旅",
                 image: "https://images.unsplash.com/photo-1529074963764-98f45c47344b?w=800",
+                flights: [
+                    { flightNo: "CA186", airline: "中國國際航空", from: "台北桃園", fromTime: "13:15", to: "北京", toTime: "16:35" },
+                    { flightNo: "CA1647", airline: "中國國際航空", from: "北京", fromTime: "19:00", to: "長春", toTime: "20:50", isTransfer: true, transferNote: "北京轉機等候約 2 小時 25 分" }
+                ],
                 activities: [
-                    { name: "桃園國際機場集合", desc: "搭乘中國國際航空飛往北京", icon: "fa-plane-departure", location: "桃園國際機場", mapUrl: "" },
-                    { name: "北京首都機場轉機", desc: "轉機前往長春", icon: "fa-plane", location: "北京首都國際機場", mapUrl: "" },
-                    { name: "抵達長春龍嘉機場", desc: "專車接送至酒店", icon: "fa-plane-arrival", location: "長春龍嘉國際機場", mapUrl: "" }
+                    { name: "桃園國際機場集合", desc: "搭乘中國國際航空 CA186 飛往北京（13:15 起飛）", icon: "fa-plane-departure", location: "桃園國際機場", mapUrl: "" },
+                    { name: "北京首都機場轉機", desc: "16:35 抵達北京，轉機等候約 2.5 小時，19:00 搭乘 CA1647 前往長春", icon: "fa-plane", location: "北京首都國際機場", mapUrl: "" },
+                    { name: "抵達長春龍嘉機場", desc: "20:50 抵達長春，專車接送至酒店", icon: "fa-plane-arrival", location: "長春龍嘉國際機場", mapUrl: "" }
                 ],
                 hotel: { name: "長春高新益田福朋喜來登酒店", stars: 5, mapUrl: "https://maps.app.goo.gl/LkLeKMuhE8oJJgH38?g_st=ipc" },
                 meals: { 早: "自理", 午: "機上餐食", 晚: "簡單宵夜點心" },
@@ -584,8 +709,11 @@
                 title: "哈爾濱 ✈ 上海",
                 subtitle: "從冰雪王國到繁華都市",
                 image: "Images/day8-浦東三大高樓.jpeg",
+                flights: [
+                    { flightNo: "CA8302", airline: "中國國際航空", from: "哈爾濱", fromTime: "11:10", to: "上海浦東", toTime: "14:25" }
+                ],
                 activities: [
-                    { name: "搭機飛往上海", desc: "告別冰雪哈爾濱", icon: "fa-plane", location: "哈爾濱太平國際機場", mapUrl: "https://maps.app.goo.gl/bbc6mBWDMX1xHFca9?g_st=ipc" },
+                    { name: "搭機飛往上海", desc: "CA8302 航班 11:10 起飛，14:25 抵達上海浦東機場", icon: "fa-plane", location: "哈爾濱太平國際機場", mapUrl: "https://maps.app.goo.gl/bbc6mBWDMX1xHFca9?g_st=ipc" },
                     { name: "EKA天物創意園區", desc: "時尚藝術與創意空間", icon: "fa-building", location: "EKA天物創意園區", mapUrl: "https://maps.app.goo.gl/fnNrvJ7sq1kyDyCS7?g_st=ipc", image: "Images/day8-EKA天物.jpeg" },
                     { name: "外觀浦東三大高樓", desc: "上海中心、環球金融中心、金茂大廈", icon: "fa-city", location: "金茂大廈", mapUrl: "https://maps.app.goo.gl/i5pHseDQx4ccJCnRA?g_st=ipc", image: "Images/day8-浦東三大高樓.jpeg" }
                 ],
@@ -602,10 +730,13 @@
                 title: "上海 → 桃園",
                 subtitle: "圓滿歸程 回到溫暖的家",
                 image: "Images/day9-新場古鎮.jpeg",
+                flights: [
+                    { flightNo: "CA195", airline: "中國國際航空", from: "上海浦東", fromTime: "14:25", to: "台北桃園", toTime: "16:30" }
+                ],
                 activities: [
                     { name: "新場古鎮", desc: "千年水鄉古鎮，江南風情", icon: "fa-torii-gate", location: "新場古鎮", mapUrl: "https://maps.app.goo.gl/GL1BRbq9pcfkorXJ7?g_st=ipc", image: "Images/day9-新場古鎮.jpeg" },
-                    { name: "上海浦東機場", desc: "搭機返回台北桃園機場", icon: "fa-plane-departure", location: "上海浦東國際機場", mapUrl: "https://maps.app.goo.gl/XhLzo2TSNrvsmB2D9?g_st=ipc" },
-                    { name: "抵達桃園國際機場", desc: "結束美好的冰雪之旅，回到溫暖的家", icon: "fa-house-heart", location: "臺灣桃園國際機場", mapUrl: "https://maps.app.goo.gl/Un77YJD34szwV1nM7?g_st=ipc" }
+                    { name: "上海浦東機場", desc: "CA195 航班 14:25 起飛，返回台北桃園機場", icon: "fa-plane-departure", location: "上海浦東國際機場", mapUrl: "https://maps.app.goo.gl/XhLzo2TSNrvsmB2D9?g_st=ipc" },
+                    { name: "抵達桃園國際機場", desc: "16:30 抵達台北，結束美好的冰雪之旅，回到溫暖的家", icon: "fa-house-heart", location: "臺灣桃園國際機場", mapUrl: "https://maps.app.goo.gl/Un77YJD34szwV1nM7?g_st=ipc" }
                 ],
                 hotel: { name: "溫暖的家 🏠", stars: 0, mapUrl: "" },
                 meals: { 早: "酒店內用", 午: "機上簡餐 + 生煤包" },
@@ -687,6 +818,37 @@
                             <p style="opacity:0.8; margin-top:5px;">${day.subtitle}</p>
                         </div>
                     </div>
+                    
+                    ${day.flights && day.flights.length > 0 ? `
+                    <div class="flight-info-section">
+                        <h3><i class="fas fa-plane"></i>今日航班</h3>
+                        ${day.flights.map((flight, idx) => `
+                            ${flight.isTransfer ? `
+                                <div class="transfer-notice">
+                                    <i class="fas fa-rotate"></i>
+                                    ${flight.transferNote}
+                                </div>
+                            ` : ''}
+                            <div class="flight-ticket">
+                                <div class="flight-ticket-row">
+                                    <div class="flight-endpoint">
+                                        <div class="time">${flight.fromTime}</div>
+                                        <div class="city">${flight.from}</div>
+                                    </div>
+                                    <div class="flight-middle">
+                                        <span class="airline">${flight.airline}</span>
+                                        <div class="flight-line"></div>
+                                        <span class="flight-number">${flight.flightNo}</span>
+                                    </div>
+                                    <div class="flight-endpoint">
+                                        <div class="time">${flight.toTime}</div>
+                                        <div class="city">${flight.to}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                    ` : ''}
                     
                     <div class="activity-section">
                         <h3><i class="fas fa-route"></i>今日行程</h3>
