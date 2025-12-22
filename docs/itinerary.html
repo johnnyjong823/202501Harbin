@@ -421,6 +421,52 @@
         
         .transfer-notice i { font-size: 1em; }
         
+        /* 提醒區塊 */
+        .reminder-section {
+            background: linear-gradient(135deg, rgba(255, 193, 7, 0.2) 0%, rgba(255, 140, 66, 0.15) 100%);
+            border: 1px solid rgba(255, 193, 7, 0.4);
+            border-left: 4px solid #FFC107;
+            border-radius: 12px;
+            padding: 15px 20px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .reminder-section .reminder-icon {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 193, 7, 0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .reminder-section .reminder-icon i {
+            font-size: 1.3em;
+            color: #FFC107;
+        }
+        
+        .reminder-section .reminder-content {
+            flex: 1;
+        }
+        
+        .reminder-section .reminder-title {
+            font-weight: bold;
+            color: #FFC107;
+            margin-bottom: 5px;
+            font-size: 0.95em;
+        }
+        
+        .reminder-section .reminder-text {
+            color: var(--snow-white);
+            font-size: 0.9em;
+            line-height: 1.5;
+        }
+        
         @media (max-width: 480px) {
             .flight-endpoint .time { font-size: 1.2em; }
             .flight-endpoint .city { font-size: 0.75em; }
@@ -602,6 +648,7 @@
                 title: "吉林 → 霧淞長廊 → 長白山魔界",
                 subtitle: "夢幻霧淞仙境",
                 image: "Images/day3-霧淞長廊.jpeg",
+                reminder: { icon: "fa-person-swimming", text: "飯店溫泉設施需要攜帶泳衣！" },
                 activities: [
                     { name: "霧淞長廊", desc: "觀賞吉林霧淞四大奇觀之一，銀裝素裹的樹掛美景", icon: "fa-tree", location: "霧凇島", mapUrl: "https://maps.app.goo.gl/WouFL4PkSg6LrAdJ7?g_st=ipc", image: "Images/day3-霧淞長廊.jpeg" },
                     { name: "長白山魔界風景區(含霧淞漂流)", desc: "如夢如幻的霧淞仙境，攝影愛好者的天堂", icon: "fa-wand-magic-sparkles", location: "長白山原生態神奇魔界風景區", mapUrl: "https://maps.app.goo.gl/HtMXNbi3Vpd5gGecA?g_st=ipc", image: "Images/day3-長白山魔界.jpeg" }
@@ -643,6 +690,7 @@
                 title: "鏡泊湖 → 雪鄉",
                 subtitle: "冰瀑奇觀與童話雪鄉",
                 image: "Images/day5-鏡泊湖吊水樓冰瀑.jpeg",
+                reminder: { icon: "fa-bag-shopping", text: "需攜帶輕便旅行袋！行李箱不方便進入雪鄉，請準備旅行袋攜帶一天的衣物。" },
                 activities: [
                     { name: "鏡泊湖吊水樓冰瀑", desc: "壯觀的冰瀑布奇景，冬季限定", icon: "fa-icicles", location: "吊水樓瀑布", mapUrl: "https://maps.app.goo.gl/G7kFLCo9BHHG3Xdb6?g_st=ipc", image: "Images/day5-鏡泊湖吊水樓冰瀑.jpeg" },
                     { name: "鏡泊湖觀冬捕", desc: "體驗東北傳統冬季捕魚文化", icon: "fa-fish", location: "鏡泊湖", mapUrl: "" },
@@ -846,6 +894,18 @@
                                 </div>
                             </div>
                         `).join('')}
+                    </div>
+                    ` : ''}
+                    
+                    ${day.reminder ? `
+                    <div class="reminder-section">
+                        <div class="reminder-icon">
+                            <i class="fas ${day.reminder.icon}"></i>
+                        </div>
+                        <div class="reminder-content">
+                            <div class="reminder-title"><i class="fas fa-bell"></i> 行前提醒</div>
+                            <div class="reminder-text">${day.reminder.text}</div>
+                        </div>
                     </div>
                     ` : ''}
                     
