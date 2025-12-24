@@ -2,7 +2,7 @@
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>東北冰雪奇緣 - 旅行行程</title>
     
     <!-- PWA 相關設定 -->
@@ -552,10 +552,14 @@
             const lightboxImg = document.getElementById('lightbox-img');
             lightboxImg.src = img.src.replace('w=400', 'w=1200');
             lightbox.classList.add('active');
+            // 開啟 lightbox 時允許縮放
+            document.querySelector('meta[name="viewport"]').setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes');
         }
         
         function closeLightbox() {
             document.getElementById('lightbox').classList.remove('active');
+            // 關閉 lightbox 時禁止縮放
+            document.querySelector('meta[name="viewport"]').setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no');
         }
         
         document.getElementById('lightbox').addEventListener('click', (e) => {
