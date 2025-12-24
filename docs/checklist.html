@@ -14,7 +14,6 @@
     
     <!-- 圖示設定 -->
     <link rel="icon" type="image/png" sizes="96x96" href="icons/favicon-96x96.png">
-    <link rel="icon" type="image/svg+xml" href="icons/favicon.svg">
     <link rel="shortcut icon" href="icons/favicon.ico">
     <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
     
@@ -578,7 +577,10 @@
                 { id: 'cloth9', text: '防水手套（建議兩層）' },
                 { id: 'cloth10', text: '暖暖包 x20' },
                 { id: 'cloth11', text: '口罩（保暖+防風）' },
-                { id: 'cloth12', text: '太陽眼鏡/雪鏡' }
+                { id: 'cloth12', text: '太陽眼鏡/雪鏡' },
+                { id: 'cloth13', text: '換洗內衣褲 x5' },
+                { id: 'cloth14', text: '泳衣(飯店可使用)' },
+                { id: 'cloth15', text: '輕便旅行袋(第五天使用，至少要能帶一套衣服)' }
             ],
             essentials: [
                 { id: 'ess1', text: '保濕乳液/護手霜' },
@@ -619,12 +621,12 @@
         
         // ========== 行前準備功能 ==========
         function getCheckedItems() {
-            const saved = sessionStorage.getItem('preparationChecked');
+            const saved = localStorage.getItem('preparationChecked');
             return saved ? JSON.parse(saved) : {};
         }
         
         function saveCheckedItems(checked) {
-            sessionStorage.setItem('preparationChecked', JSON.stringify(checked));
+            localStorage.setItem('preparationChecked', JSON.stringify(checked));
         }
         
         function renderPreparationList(containerId, items, category) {
@@ -673,7 +675,7 @@
         
         function resetPreparation() {
             if (confirm('確定要重置所有行前準備項目嗎？')) {
-                sessionStorage.removeItem('preparationChecked');
+                localStorage.removeItem('preparationChecked');
                 initPreparation();
             }
         }
