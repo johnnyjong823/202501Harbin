@@ -603,6 +603,7 @@
             {
                 day: 1,
                 date: "2026/01/10 (六)",
+                weather: "長春 -11°C ~ -22°C",
                 title: "桃園 ✈ 北京 ✈ 長春",
                 subtitle: "啟程 - 踏上冰雪之旅",
                 image: "https://images.unsplash.com/photo-1529074963764-98f45c47344b?w=800",
@@ -622,6 +623,7 @@
             {
                 day: 2,
                 date: "2026/01/11 (日)",
+                weather: "吉林 -15°C ~ -22°C",
                 title: "長春 → 淨月潭 → 吉林",
                 subtitle: "藍冰奇觀與滿族風情",
                 image: "Images/day2-淨月潭國家森林公園.jpeg",
@@ -645,6 +647,7 @@
             {
                 day: 3,
                 date: "2026/01/12 (一)",
+                weather: "長白山 -22°C ~ -32°C",
                 title: "吉林 → 霧淞長廊 → 長白山魔界",
                 subtitle: "夢幻霧淞仙境",
                 image: "Images/day3-霧淞長廊.jpeg",
@@ -663,6 +666,7 @@
             {
                 day: 4,
                 date: "2026/01/13 (二)",
+                weather: "敦化 -15°C ~ -24°C",
                 title: "長白山北坡風景區",
                 subtitle: "登臨天池 壯麗雪山",
                 image: "Images/day4-長白山天池.jpeg",
@@ -687,6 +691,7 @@
             {
                 day: 5,
                 date: "2026/01/14 (三)",
+                weather: "雪鄉 -14°C ~ -27°C",
                 title: "鏡泊湖 → 雪鄉",
                 subtitle: "冰瀑奇觀與童話雪鄉",
                 image: "Images/day5-鏡泊湖吊水樓冰瀑.jpeg",
@@ -706,6 +711,7 @@
             {
                 day: 6,
                 date: "2026/01/15 (四)",
+                weather: "伏爾加莊園 -14°C ~ -27°C",
                 title: "雪鄉 → 伏爾加莊園",
                 subtitle: "雪中漫步與俄式風情",
                 image: "https://images.unsplash.com/photo-1477601263568-180e2c6d046e?w=800",
@@ -720,12 +726,15 @@
                 meals: { 早: "酒店內用", 午: "中式合菜", 晚: "莊園俄式西餐 🍷" },
                 gallery: [
                     "https://images.unsplash.com/photo-1477601263568-180e2c6d046e?w=800",
-                    "https://images.unsplash.com/photo-1516733725897-1aa73b87c8e8?w=800"
+                    "https://images.unsplash.com/photo-1516733725897-1aa73b87c8e8?w=800",
+                    "Images/day7-伏爾加莊園1.jpeg",
+                    "Images/day7-伏爾加莊園2.jpeg"
                 ]
             },
             {
                 day: 7,
                 date: "2026/01/16 (五)",
+                weather: "哈爾濱 -14°C ~ -25°C",
                 title: "伏爾加莊園 → 哈爾濱 → 冰雪大世界",
                 subtitle: "俄羅斯風情與冰雪王國",
                 image: "Images/day7-冰雪大世界.jpeg",
@@ -753,6 +762,7 @@
             {
                 day: 8,
                 date: "2026/01/17 (六)",
+                weather: "上海 3°C ~ 9°C",
                 title: "哈爾濱 ✈ 上海",
                 subtitle: "從冰雪王國到繁華都市",
                 image: "Images/day8-浦東三大高樓.jpeg",
@@ -774,6 +784,7 @@
             {
                 day: 9,
                 date: "2026/01/18 (日)",
+                weather: "桃園 10°C ~ 17°C",
                 title: "上海 → 桃園",
                 subtitle: "圓滿歸程 回到溫暖的家",
                 image: "Images/day9-新場古鎮.jpeg",
@@ -861,6 +872,7 @@
                         <img src="${day.image}" alt="${day.title}">
                         <div class="day-hero-overlay">
                             <span class="date">DAY ${day.day} | ${day.date}</span>
+                            ${day.weather ? `<p style="opacity:0.9; margin-top:3px; color: var(--ice-blue);"><i class="fas fa-temperature-three-quarters"></i> ${day.weather}</p>` : ''}
                             <h2>${day.title}</h2>
                             <p style="opacity:0.8; margin-top:5px;">${day.subtitle}</p>
                         </div>
@@ -1011,6 +1023,48 @@
             renderDaysContent();
             createSnowflakes();
         });
+    </script>
+    
+    <!-- 固定集合資訊提示（僅在首次造訪顯示） -->
+    <div id="meeting-info-modal" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.85); z-index: 3000; align-items: center; justify-content: center;">
+        <div style="background: linear-gradient(135deg, var(--deep-navy) 0%, #16213E 100%); border-radius: 25px; padding: 30px; max-width: 500px; margin: 20px; border: 2px solid var(--warm-orange); box-shadow: 0 10px 40px rgba(0,0,0,0.5);">
+            <h3 style="color: var(--warm-orange); margin-bottom: 20px; font-size: 1.5em; text-align: center;">
+                <i class="fas fa-info-circle"></i> 集合資訊
+            </h3>
+            <div style="line-height: 2; font-size: 1em; margin-bottom: 20px;">
+                <p style="margin-bottom: 12px;"><strong>📅 日期時間：</strong>2026/01/10（六）10:45</p>
+                <p style="margin-bottom: 12px;"><strong>📍 集合地點：</strong>桃園機場第二航廈<br>　　出境大廳7號後方中華航空團體櫃檯</p>
+                <p style="margin-bottom: 12px;"><strong>🚩 辨識：</strong>領隊帶可樂旗子</p>
+                <p style="margin-bottom: 15px;"><strong>👤 領隊：</strong>魏淑玲</p>
+                <div style="background: rgba(255,140,66,0.2); padding: 15px; border-radius: 12px; border-left: 4px solid var(--warm-orange);">
+                    <p style="margin-bottom: 8px;"><i class="fas fa-phone" style="color: var(--ice-blue);"></i> <strong>電話：</strong>0910-473-787</p>
+                    <p><i class="fab fa-line" style="color: #00B900;"></i> <strong>LINE：</strong>anita3787</p>
+                </div>
+            </div>
+            <button onclick="closeMeetingInfo()" style="width: 100%; background: var(--warm-orange); border: none; padding: 15px; border-radius: 12px; color: white; font-size: 1.1em; cursor: pointer; font-weight: bold;">
+                <i class="fas fa-check"></i> 我知道了
+            </button>
+        </div>
+    </div>
+    
+    <script>
+        // 集合資訊提示
+        function showMeetingInfo() {
+            const modal = document.getElementById('meeting-info-modal');
+            const hasShown = localStorage.getItem('meetingInfoShown');
+            
+            if (!hasShown) {
+                modal.style.display = 'flex';
+            }
+        }
+        
+        function closeMeetingInfo() {
+            document.getElementById('meeting-info-modal').style.display = 'none';
+            localStorage.setItem('meetingInfoShown', 'true');
+        }
+        
+        // 頁面載入後3秒顯示
+        setTimeout(showMeetingInfo, 3000);
     </script>
 </body>
 </html>

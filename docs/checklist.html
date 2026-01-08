@@ -457,6 +457,34 @@
     <section class="section" style="padding-top: 30px;">
         <h2 class="section-title"><i class="fas fa-list-check"></i>旅行清單</h2>
         
+        <!-- 集合資訊 -->
+        <div class="checklist-card" style="background: linear-gradient(135deg, rgba(255,193,7,0.2) 0%, rgba(255,140,66,0.15) 100%); border: 2px solid var(--warm-orange); margin-bottom: 25px;">
+            <h3 style="color: var(--warm-orange); margin-bottom: 15px;"><i class="fas fa-info-circle"></i>集合資訊</h3>
+            <div style="line-height: 1.8; font-size: 0.95em;">
+                <p style="margin-bottom: 10px;"><strong>📅 日期時間：</strong>2026/01/10（六）上午 10:45</p>
+                <p style="margin-bottom: 10px;"><strong>📍 集合地點：</strong>桃園機場第二航廈出境大廳 7號後方中華航空團體櫃檯</p>
+                <p style="margin-bottom: 10px;"><strong>🚩 辨識標誌：</strong>領隊將帶著可樂旗子等候</p>
+                <p style="margin-bottom: 15px;"><strong>👤 領隊：</strong>魏淑玲</p>
+                <div style="background: rgba(0,0,0,0.2); padding: 12px; border-radius: 10px; margin-top: 10px;">
+                    <p style="margin-bottom: 5px;"><i class="fas fa-phone" style="color: var(--ice-blue); margin-right: 8px;"></i><strong>電話：</strong>0910-473-787</p>
+                    <p><i class="fab fa-line" style="color: #00B900; margin-right: 8px;"></i><strong>LINE ID：</strong>anita3787</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 重要提醒 -->
+        <div class="checklist-card" style="background: linear-gradient(135deg, rgba(244,67,54,0.15) 0%, rgba(255,140,66,0.1) 100%); border: 1px solid rgba(244,67,54,0.3); margin-bottom: 25px;">
+            <h3 style="color: #ff6b6b;"><i class="fas fa-exclamation-triangle"></i>重要提醒</h3>
+            <ul style="line-height: 2; font-size: 0.95em; padding-left: 20px;">
+                <li><strong>❌ 禁帶打火機</strong>（因需轉機）</li>
+                <li><strong>🔋 行動電源規定：</strong>最多2顆，每顆低於20000mAh，需有清楚CCC標示</li>
+                <li><strong>💊 液態藥品：</strong>請放入行李箱托運</li>
+                <li><strong>🧳 行李限重：</strong>每人一件23公斤，建議帶大行李箱</li>
+                <li><strong>🎒 雪鄉住宿：</strong>需攜帶輕便旅行袋（小木屋無電梯）</li>
+                <li><strong>🌡️ 氣溫範圍：</strong>東北 -11°C ~ -32°C，上海 3°C ~ 9°C</li>
+            </ul>
+        </div>
+        
         <!-- Tabs -->
         <div class="tabs">
             <div class="tab-btn active" data-tab="preparation">
@@ -563,43 +591,51 @@
                 { id: 'doc5', text: '酒店訂房確認單' },
                 { id: 'doc6', text: '旅遊保險證明' },
                 { id: 'doc7', text: '緊急聯絡人資料' },
-                { id: 'doc8', text: '信用卡（建議2張以上）' }
+                { id: 'doc8', text: '信用卡（建議2張以上）' },
+                { id: 'doc9', text: '人民幣現金' },
+                { id: 'doc10', text: '支付寶/微信支付（建議先下載）' }
             ],
             clothing: [
-                { id: 'cloth1', text: '羽絨外套（-30°C適用）' },
+                { id: 'cloth1', text: '冬季厚外套（-32°C適用）' },
                 { id: 'cloth2', text: '保暖內衣褲（發熱衣）' },
                 { id: 'cloth3', text: '厚毛衣/刷毛上衣 x3' },
                 { id: 'cloth4', text: '保暖褲/雪褲' },
-                { id: 'cloth5', text: '防水雪靴' },
+                { id: 'cloth5', text: '輕鬆好走的鞋子' },
                 { id: 'cloth6', text: '厚襪子 x5' },
-                { id: 'cloth7', text: '毛帽/雷鋒帽' },
+                { id: 'cloth7', text: '帽子' },
                 { id: 'cloth8', text: '圍巾/脖圍' },
-                { id: 'cloth9', text: '防水手套（建議兩層）' },
+                { id: 'cloth9', text: '手套' },
                 { id: 'cloth10', text: '暖暖包 x20' },
                 { id: 'cloth11', text: '口罩（保暖+防風）' },
-                { id: 'cloth12', text: '太陽眼鏡/雪鏡' },
+                { id: 'cloth12', text: '墨鏡' },
                 { id: 'cloth13', text: '換洗內衣褲 x5' },
-                { id: 'cloth14', text: '泳衣(飯店可使用)' },
-                { id: 'cloth15', text: '輕便旅行袋(第五天使用，至少要能帶一套衣服)' }
+                { id: 'cloth14', text: '泳衣（溫泉飯店使用）' },
+                { id: 'cloth15', text: '輕便旅行袋（雪鄉住宿使用，裝一天行李）' },
+                { id: 'cloth16', text: '短袖衣物 1-2件（怕熱貴賓）' }
             ],
             essentials: [
-                { id: 'ess1', text: '保濕乳液/護手霜' },
-                { id: 'ess2', text: '護唇膏' },
-                { id: 'ess3', text: '防曬乳（雪地反光）' },
-                { id: 'ess4', text: '個人藥品' },
-                { id: 'ess5', text: '腸胃藥' },
-                { id: 'ess6', text: '感冒藥' },
-                { id: 'ess7', text: '暈車藥' },
-                { id: 'ess8', text: '盥洗用品' },
-                { id: 'ess9', text: '保溫杯' },
-                { id: 'ess10', text: '零食/泡麵' }
+                { id: 'ess1', text: '保濕乳液' },
+                { id: 'ess2', text: '面膜' },
+                { id: 'ess3', text: '凡士林' },
+                { id: 'ess4', text: '護唇膏' },
+                { id: 'ess5', text: '防曬用品（雪地反光）' },
+                { id: 'ess6', text: '雨傘' },
+                { id: 'ess7', text: '保溫瓶' },
+                { id: 'ess8', text: '感冒藥（液態請托運）' },
+                { id: 'ess9', text: '腸胃藥' },
+                { id: 'ess10', text: '頭痛藥' },
+                { id: 'ess11', text: '暈車藥' },
+                { id: 'ess12', text: '個人藥品及健康食品' },
+                { id: 'ess13', text: '盥洗用品' },
+                { id: 'ess14', text: '小零嘴（車上食用）' },
+                { id: 'ess15', text: '耳掛式咖啡（有需要者）' }
             ],
             electronics: [
-                { id: 'elec1', text: '手機+充電器' },
-                { id: 'elec2', text: '行動電源（低溫需貼身保暖）' },
+                { id: 'elec1', text: '手機+充電器（220V）' },
+                { id: 'elec2', text: '行動電源（最多2顆，每顆低於20000mAh，需有CCC標示）' },
                 { id: 'elec3', text: '相機+備用電池' },
                 { id: 'elec4', text: '記憶卡/傳輸線' },
-                { id: 'elec5', text: '萬用插頭轉接器' },
+                { id: 'elec5', text: '萬用插頭轉接器（大陸220V）' },
                 { id: 'elec6', text: '耳機' }
             ]
         };
